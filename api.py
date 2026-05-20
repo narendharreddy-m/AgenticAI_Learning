@@ -21,6 +21,8 @@ body = {
     ],
 }
 response = requests.post(url, headers=headers, json=body, timeout=30)
+data = response.json()
+result = data["choices"][0]["message"]["content"]
 
-print("Status Code:", response.status_code)
-print("Response:", response.text)
+with open("output.md", "w") as f:
+    f.write(result)
